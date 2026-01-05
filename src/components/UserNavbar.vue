@@ -5,10 +5,10 @@
       <img src="../assets/images/findcard.png" alt="找。牌" height="24">
     </a>
     <button class="navbar-toggler border-0 me-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" ref="navbarBtn" @click="isCollapse = !isCollapse">
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" @click="isCollapse = !isCollapse">
       <span class="material-icons fs-2" :class="{ 'active': isCollapse }">menu</span>
     </button>
-    <div class="collapse navbar-collapse pt-2 pt-lg-0" id="navbarNav">
+    <div class="collapse navbar-collapse pt-2 pt-lg-0" id="navbarNav" ref="navbarCollapse">
       <ul class="navbar-nav">
         <li class="nav-item">
           <RouterLink to="/" class="nav-link fw-bold px-4 px-lg-3 py-3" :class="{ 'active':  status === 'home' }">首頁</RouterLink>
@@ -60,7 +60,7 @@
 </template>
 
 <script setup>
-import 'bootstrap/js/dist/collapse'
+import Collapse from 'bootstrap/js/dist/collapse'
 import { ref, watch, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { storeToRefs } from 'pinia'
@@ -75,26 +75,28 @@ const { getCart } = cStore
 const { favoriteNum } = storeToRefs(favStore)
 const { cartNum } = storeToRefs(cStore)
 
+const navbarCollapse = ref(null)
+const bsCollapse = ref(null)
 const isCollapse = ref(false)
+
 const status = ref('')
-const navbarBtn = ref(null)
 watch(route, (n)=>{
   if (document.body.offsetWidth < 992) {
     if (isCollapse.value) {
-      navbarBtn.value.click()
+      bsCollapse.value.hide()
     }
   }
   status.value = n.name
-  if (document.body.scrollTop > 0 || document.documentElement.scrollTop > 0) {
-    document.body.scrollTop = 0 // For Safari
-    document.documentElement.scrollTop = 0 // For Chrome, Firefox, IE and Opera
-  }
 })
 
 onMounted(() => {
   getCart()
   getFavorite()
   status.value = route.name
+
+  bsCollapse.value = new Collapse(navbarCollapse.value, {
+    toggle: false // 初始化時不要切換選單開關
+  })
 })
 </script>
 

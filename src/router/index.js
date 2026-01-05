@@ -101,7 +101,16 @@ const routes = [
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes
+  routes,
+  scrollBehavior(to, from, savedPosition) {
+    // 如果是按「上/下一頁」鍵，就回到瀏覽器記錄的位置
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      // 否則，所有頁面切換一律滾回最頂端
+      return { top: 0 }
+    }
+  }
 })
 
 export default router
