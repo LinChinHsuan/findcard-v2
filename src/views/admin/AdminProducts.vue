@@ -1,7 +1,9 @@
 <template>
   <Loading :active="isLoading" />
   <div class="text-end pt-4">
-    <button type="button" class="btn btn-primary fw-bold text-white" @click="openModal(true)">建立新的產品</button>
+    <button type="button" class="btn btn-primary fw-bold text-white" @click="openModal(true)">
+      建立新的產品
+    </button>
   </div>
   <div class="table-responsive">
     <table class="table my-4">
@@ -27,8 +29,20 @@
           </td>
           <td>
             <div class="btn-group">
-              <button class="btn btn-outline-primary fw-bold" type="button" @click="openModal(false,item)">編輯</button>
-              <button class="btn btn-outline-danger fw-bold" type="button" @click="openDelModal(item)">刪除</button>
+              <button
+                class="btn btn-outline-primary fw-bold"
+                type="button"
+                @click="openModal(false, item)"
+              >
+                編輯
+              </button>
+              <button
+                class="btn btn-outline-danger fw-bold"
+                type="button"
+                @click="openDelModal(item)"
+              >
+                刪除
+              </button>
             </div>
           </td>
         </tr>
@@ -40,90 +54,85 @@
   <DelModal ref="delModal" :item="tempProduct" @del-item="delProduct" />
 </template>
 
-<script>
-import messageStore from '@/stores/messageStore'
-import { mapActions } from 'pinia'
+<script setup>
 import ProductModal from '@/components/ProductModal.vue'
 import DelModal from '@/components/DelModal.vue'
 import Pagination from '@/components/Pagination.vue'
+import { ref } from 'vue'
+import axios from 'axios'
 
-export default {
-  data () {
-    return {
-      products: [],
-      pagination: {},
-      tempProduct: {},
-      isNew: false,
-      isLoading: false
+import messageStore from '@/stores/messageStore'
+const mStore = messageStore()
+const { pushMessage } = mStore
+
+const productModal = ref(null)
+const delModal = ref(null)
+
+const products = ref([])
+const pagination = ref({})
+const tempProduct = ref({})
+const isNew = ref(false)
+const isLoading = ref(false)
+
+function getProducts(page = 1) {
+  const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/admin/products?page=${page}`
+  isLoading.value = true
+  axios.get(api).then((res) => {
+    isLoading.value = false
+    if (res.data.success) {
+      products.value = res.data.products
+      pagination.value = res.data.pagination
     }
-  },
-  components: {
-    ProductModal,
-    DelModal,
-    Pagination
-  },
-  methods: {
-    getProducts (page = 1) {
-      const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/admin/products?page=${page}`
-      this.isLoading = true
-      this.$http.get(api).then((res) => {
-        this.isLoading = false
-        if (res.data.success) {
-          this.products = res.data.products
-          this.pagination = res.data.pagination
-        }
-      })
-    },
-    openModal (isNew, item) {
-      if (isNew) {
-        this.tempProduct = {}
-      } else {
-        this.tempProduct = { ...item }
-      }
-      this.isNew = isNew
-      this.$refs.productModal.showModal()
-    },
-    openDelModal (item) {
-      this.tempProduct = item
-      this.$refs.delModal.showModal()
-    },
-    updateProduct (item) {
-      this.tempProduct = item
-      // 新增
-      let api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/admin/product`
-      let httpMethod = 'post'
-      // 編輯
-      if (!this.isNew) {
-        api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/admin/product/${item.id}`
-        httpMethod = 'put'
-      }
-      this.$http[httpMethod](api, { data: this.tempProduct }).then((res) => {
-        this.getProducts()
-        this.$refs.productModal.hideModal()
-        this.pushMessage(res, httpMethod === 'post' ? '新增商品' : '更新商品')
-      })
-    },
-    delProduct (item) {
-      const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/admin/product/${item.id}`
-      this.$http.delete(api).then((res) => {
-        this.getProducts()
-        this.$refs.delModal.hideModal()
-        this.pushMessage(res, '刪除商品')
-      })
-    },
-    ...mapActions(messageStore, ['pushMessage'])
-  },
-  created () {
-    this.getProducts()
-  }
+  })
 }
+function updateProduct(item) {
+  tempProduct.value = item
+  // 新增
+  let api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/admin/product`
+  let httpMethod = 'post'
+  // 編輯
+  if (!isNew.value) {
+    api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/admin/product/${item.id}`
+    httpMethod = 'put'
+  }
+  axios[httpMethod](api, { data: tempProduct.value }).then((res) => {
+    getProducts()
+    productModal.value.hideModal()
+    pushMessage(res, httpMethod === 'post' ? '新增商品' : '更新商品')
+  })
+}
+function delProduct(item) {
+  const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/admin/product/${item.id}`
+  axios.delete(api).then((res) => {
+    getProducts()
+    delModal.value.hideModal()
+    pushMessage(res, '刪除商品')
+  })
+}
+
+function openModal(isNewStatus, item) {
+  if (isNewStatus) {
+    tempProduct.value = {}
+  } else {
+    tempProduct.value = { ...item }
+  }
+  isNew.value = isNewStatus
+  productModal.value.showModal()
+}
+function openDelModal(item) {
+  tempProduct.value = item
+  delModal.value.showModal()
+}
+getProducts()
 </script>
 
 <style lang="scss" scoped>
-th,td{
+th,
+td {
   white-space: nowrap;
 }
-.btn:hover,.btn:active{
-  color: #FFFFFF;
+.btn:hover,
+.btn:active {
+  color: #ffffff;
 }
 </style>
