@@ -59,12 +59,7 @@ function getTrivia(page = 1) {
   const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/articles?page=${page}`
   axios.get(api).then((res) => {
     if (res.data.success) {
-      const triviaData = res.data.articles
-      triviaData.forEach((item) => {
-        if (item.category === '冷知識') {
-          trivia.value.push(item)
-        }
-      })
+      trivia.value = res.data.articles.filter(item => item.category === '冷知識')
     }
     nowTrivia.value = trivia.value[0]
     isLoading.value = false

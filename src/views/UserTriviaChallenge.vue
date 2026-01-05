@@ -138,17 +138,16 @@
 
 <script setup>
 import SectionBanner from '@/components/SectionBanner.vue'
-import { ref, watch } from 'vue'
+import { ref, computed } from 'vue'
 import axios from 'axios'
 
 const answered = ref(false)
 const questions = ref([])
 const answers = ref([])
 const isLoading = ref(false)
-const nowQuestion = ref({})
 const nowQuestionIndex = ref(0)
-watch(nowQuestionIndex, () => {
-  nowQuestion.value = questions.value[nowQuestionIndex.value]
+const nowQuestion = computed(() => {
+  return questions.value[nowQuestionIndex.value] || {}
 })
 function getQuestions(page = 1) {
   isLoading.value = true
@@ -163,7 +162,6 @@ function getQuestions(page = 1) {
         }
       })
     }
-    nowQuestion.value = questions.value[0]
     isLoading.value = false
   })
 }
