@@ -395,7 +395,6 @@
                       type="submit"
                       class="btn btn-primary btn-lg w-100 fw-bold text-white"
                       :disabled="!isFillIn"
-                      @submit="createOrder"
                     >
                       <div
                         class="spinner-border text-white spinner-border-sm"
@@ -531,7 +530,7 @@
 <script setup>
 import cartStore from '@/stores/cartStore'
 import Footer from '@/components/Footer.vue'
-import { ref, reactive, watch, onMounted, inject } from 'vue'
+import { ref, reactive, computed, inject } from 'vue'
 import { storeToRefs } from 'pinia'
 import axios from 'axios'
 
@@ -546,10 +545,12 @@ const step = ref(0)
 const coupon = ref('')
 const isOrderLoading = ref(false)
 const orderId = ref('')
-const order = ref({ products: [] })
+const order = ref({
+  products: [],
+  user: {},
+})
 
 // 表單
-const isFillIn = ref(false)
 const form = reactive({
   user: {
     name: '',
@@ -559,17 +560,10 @@ const form = reactive({
   },
   message: '',
 })
-watch(
-  () => form.user,
-  (n) => {
-    if (n.address && n.tel && n.email && n.name) {
-      isFillIn.value = true
-    } else {
-      isFillIn.value = false
-    }
-  },
-  { deep: true },
-)
+const isFillIn = computed(() => {
+  const { address, tel, email, name } = form.user
+  return !!(address && tel && email && name) // 確保四個欄位都有值
+})
 
 function delCartModal(item) {
   if (item) {
