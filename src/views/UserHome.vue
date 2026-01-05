@@ -5,17 +5,26 @@
         <div class="h-100 d-flex flex-column justify-content-center text-white">
           <h1 class="text-center mt-5 mb-4">
             <span class="d-none">找。牌</span>
-            <img src="../assets/images/findcardWhite.png" alt="找。牌" width="200">
+            <img src="../assets/images/findcardWhite.png" alt="找。牌" width="200" />
           </h1>
           <p class="fs-4 text-center mx-auto mb-0">「魔術師為觀眾找牌，我們替您找牌。」</p>
-          <RouterLink to="products" type="button" class="btn btn-outline-light btn-lg fw-bold border-2 px-4 mt-5 align-self-center">瀏覽商品</RouterLink>
+          <RouterLink
+            to="products"
+            type="button"
+            class="btn btn-outline-light btn-lg fw-bold border-2 px-4 mt-5 align-self-center"
+            >瀏覽商品</RouterLink
+          >
         </div>
       </div>
       <div class="col-lg-6 ms-auto h-100">
-        <img src="https://storage.googleapis.com/vue-course-api.appspot.com/vuefindcard/1758699027858.jpg" alt="找。牌" class="w-100 h-100 img-fit">
+        <img
+          src="https://storage.googleapis.com/vue-course-api.appspot.com/vuefindcard/1758699027858.jpg"
+          alt="找。牌"
+          class="w-100 h-100 img-fit"
+        />
       </div>
       <div class="userScroll d-flex justify-content-center" v-if="height < 50">
-        <img src="../assets/images/down-arrow.png" alt="arrow-down">
+        <img src="../assets/images/down-arrow.png" alt="arrow-down" />
       </div>
     </div>
   </div>
@@ -38,7 +47,7 @@
               </div>
               <div class="col-10 col-xl-8 mx-auto">
                 <p class="d-none d-lg-block fs-5 text-indent mb-0">
-                 《找。牌》是由曾榮獲韓國蔚山魔術特別獎的林店長所創辦的牌店，專注於提供各位魔術師高品質的撲克牌，每副牌皆以最高標準把關，從印刷到噴墨從未鬆懈一絲一毫。
+                  《找。牌》是由曾榮獲韓國蔚山魔術特別獎的林店長所創辦的牌店，專注於提供各位魔術師高品質的撲克牌，每副牌皆以最高標準把關，從印刷到噴墨從未鬆懈一絲一毫。
                 </p>
                 <p class="d-block d-lg-none text-indent mb-0">
                   《找。牌》是由曾榮獲韓國蔚山魔術特別獎的林店長所創辦的牌店，專注於提供各位魔術師高品質的撲克牌，每副牌皆以最高標準把關，從印刷到噴墨從未鬆懈一絲一毫。
@@ -47,7 +56,10 @@
             </div>
           </div>
           <div class="col-4">
-            <img src="https://storage.googleapis.com/vue-course-api.appspot.com/vuefindcard/1758699095796.jpg" alt="關於找。牌">
+            <img
+              src="https://storage.googleapis.com/vue-course-api.appspot.com/vuefindcard/1758699095796.jpg"
+              alt="關於找。牌"
+            />
           </div>
         </div>
       </div>
@@ -57,10 +69,27 @@
       </h3>
       <div class="row hotSale">
         <div class="col-lg-6">
-          <div ref="carousel" id="carouselIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel">
+          <div
+            ref="carouselRef"
+            id="carouselIndicators"
+            class="carousel slide carousel-fade"
+            data-bs-ride="carousel"
+          >
             <div class="carousel-indicators">
-              <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-              <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button
+                type="button"
+                data-bs-target="#carouselIndicators"
+                data-bs-slide-to="0"
+                class="active"
+                aria-current="true"
+                aria-label="Slide 1"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#carouselIndicators"
+                data-bs-slide-to="1"
+                aria-label="Slide 2"
+              ></button>
             </div>
             <div class="carousel-inner">
               <div class="carousel-item active"></div>
@@ -69,27 +98,46 @@
           </div>
         </div>
         <div class="col-lg-6">
-          <div class="h-100 d-flex flex-column justify-content-center px-2 px-md-0 px-lg-4 py-2 py-md-0">
+          <div
+            class="h-100 d-flex flex-column justify-content-center px-2 px-md-0 px-lg-4 py-2 py-md-0"
+          >
             <h2 class="fs-1 fw-bold mt-5 mt-lg-0 mb-3">加拿大國家公園紀念牌</h2>
             <p class="fs-5 fw-bold mb-2 pt-4 border-top">產品介紹</p>
-            <p class="lh-lg mb-4 text-indent">本產品為加拿大國家公園所推出的紀念牌，其每張牌面都是根據該國家公園內的風景與野生動物所繪製，具有濃濃的生態氣息和觀賞性，作為紀念牌價值十足。同時，金屬製的牌盒給人相當的安全感，給您與傳統的紙質牌盒截然不同的體驗。</p>
+            <p class="lh-lg mb-4 text-indent">
+              本產品為加拿大國家公園所推出的紀念牌，其每張牌面都是根據該國家公園內的風景與野生動物所繪製，具有濃濃的生態氣息和觀賞性，作為紀念牌價值十足。同時，金屬製的牌盒給人相當的安全感，給您與傳統的紙質牌盒截然不同的體驗。
+            </p>
             <p class="d-none d-xl-block mb-5">規格：一盒53張、金屬製牌盒</p>
-            <p class="fs-3 fw-bold text-end mb-3">NT $680 / 副
-              <span class="fs-5 text-decoration-line-through text-muted">
-                $800
-              </span>
+            <p class="fs-3 fw-bold text-end mb-3">
+              NT $680 / 副
+              <span class="fs-5 text-decoration-line-through text-muted"> $800 </span>
             </p>
             <div class="d-flex">
-              <button type="button" class="btn btn-outline-primary border-2 fw-bold w-50 me-2" @click.stop="addCart('-N-HfxO4rb_sLZJ3Eg5o')">
-                <div class="spinner-border text-white spinner-border-sm" role="status" v-if="loadingItem === '-N-HfxO4rb_sLZJ3Eg5o'">
+              <button
+                type="button"
+                class="btn btn-outline-primary border-2 fw-bold w-50 me-2"
+                @click.stop="addCart('-N-HfxO4rb_sLZJ3Eg5o')"
+              >
+                <div
+                  class="spinner-border text-white spinner-border-sm"
+                  role="status"
+                  v-if="loadingItem === '-N-HfxO4rb_sLZJ3Eg5o'"
+                >
                   <span class="visually-hidden">Loading...</span>
                 </div>
                 加到購物車
               </button>
-              <button class="btn btn-primary text-white fw-bold w-50" type="button" @click.stop="buyNow('-N-HfxO4rb_sLZJ3Eg5o')">
-                  <div class="spinner-border text-white spinner-border-sm" role="status" v-if="buyNowLoading">
-                    <span class="visually-hidden">Loading...</span>
-                  </div>
+              <button
+                class="btn btn-primary text-white fw-bold w-50"
+                type="button"
+                @click.stop="buyNow('-N-HfxO4rb_sLZJ3Eg5o')"
+              >
+                <div
+                  class="spinner-border text-white spinner-border-sm"
+                  role="status"
+                  v-if="buyNowLoading"
+                >
+                  <span class="visually-hidden">Loading...</span>
+                </div>
                 立即購買
               </button>
             </div>
@@ -105,7 +153,10 @@
       </h3>
       <div class="row news" ref="news">
         <div class="d-none d-md-block col-md-6">
-          <img src="https://storage.googleapis.com/vue-course-api.appspot.com/vuefindcard/1758699725944.jpg" alt="最新消息">
+          <img
+            src="https://storage.googleapis.com/vue-course-api.appspot.com/vuefindcard/1758699725944.jpg"
+            alt="最新消息"
+          />
         </div>
         <div class="col-md-6 my-auto">
           <ul class="list-group list-group-flush">
@@ -160,7 +211,11 @@
           <div class="border p-3 h-100 d-flex flex-column justify-content-between">
             <div class="mb-5">
               <div class="d-flex">
-                <img src="https://storage.googleapis.com/vue-course-api.appspot.com/vuefindcard/1758699552863.jpg" alt="user" class="user rounded-circle">
+                <img
+                  src="https://storage.googleapis.com/vue-course-api.appspot.com/vuefindcard/1758699552863.jpg"
+                  alt="user"
+                  class="user rounded-circle"
+                />
                 <div class="mx-3 d-flex flex-column justify-content-center">
                   <h2 class="fs-5">吳品宜</h2>
                   <small class="text-secondary">2022年3月22日 18:07</small>
@@ -170,12 +225,21 @@
                   <span class="material-icons">grade</span>
                 </span>
               </div>
-              <p class="mt-3 mb-0">原本以為只買一副會很慢才處理，結果下單隔天就出貨了，完全沒有因為買少量被影響到，良心店家。</p>
+              <p class="mt-3 mb-0">
+                原本以為只買一副會很慢才處理，結果下單隔天就出貨了，完全沒有因為買少量被影響到，良心店家。
+              </p>
             </div>
-            <button type="button" class="btn p-0 align-self-end" @click="$router.push('/product/-MzUM_vUNQPUVW8OWiu-')">
+            <button
+              type="button"
+              class="btn p-0 align-self-end"
+              @click="$router.push('/product/-MzUM_vUNQPUVW8OWiu-')"
+            >
               <div class="d-flex">
                 <span class="ms-auto ps-2 me-2">經典單車牌(紅)</span>
-                <img src="https://storage.googleapis.com/vue-course-api.appspot.com/vuefindcard/1650378976380.jpg" alt="經典單車牌(紅)">
+                <img
+                  src="https://storage.googleapis.com/vue-course-api.appspot.com/vuefindcard/1650378976380.jpg"
+                  alt="經典單車牌(紅)"
+                />
               </div>
             </button>
           </div>
@@ -184,7 +248,11 @@
           <div class="border p-3 h-100 d-flex flex-column justify-content-between">
             <div class="mb-5">
               <div class="d-flex">
-                <img src="https://storage.googleapis.com/vue-course-api.appspot.com/vuefindcard/1758699570888.jpg" alt="user" class="user rounded-circle">
+                <img
+                  src="https://storage.googleapis.com/vue-course-api.appspot.com/vuefindcard/1758699570888.jpg"
+                  alt="user"
+                  class="user rounded-circle"
+                />
                 <div class="mx-3 d-flex flex-column justify-content-center">
                   <h2 class="fs-5">鄭伊如</h2>
                   <small class="text-secondary">2022年1月27日 15:43</small>
@@ -194,12 +262,21 @@
                   <span class="material-icons">grade</span>
                 </span>
               </div>
-              <p class="mt-3 mb-0">金屬牌盒質感相當好，每張牌都經過特別的設計，且紙質和噴墨品質都很完美，不愧為主打商品。</p>
+              <p class="mt-3 mb-0">
+                金屬牌盒質感相當好，每張牌都經過特別的設計，且紙質和噴墨品質都很完美，不愧為主打商品。
+              </p>
             </div>
-            <button type="button" class="btn p-0 align-self-end" @click="$router.push('/product/-N-HfxO4rb_sLZJ3Eg5o')">
+            <button
+              type="button"
+              class="btn p-0 align-self-end"
+              @click="$router.push('/product/-N-HfxO4rb_sLZJ3Eg5o')"
+            >
               <div class="d-flex">
                 <span class="ms-auto ps-2 me-2">加拿大國家公園紀念牌</span>
-                <img src="https://storage.googleapis.com/vue-course-api.appspot.com/vuefindcard/1650378716872.jpg" alt="加拿大國家公園紀念牌">
+                <img
+                  src="https://storage.googleapis.com/vue-course-api.appspot.com/vuefindcard/1650378716872.jpg"
+                  alt="加拿大國家公園紀念牌"
+                />
               </div>
             </button>
           </div>
@@ -208,7 +285,11 @@
           <div class="border p-3 h-100 d-flex flex-column justify-content-between">
             <div class="mb-5">
               <div class="d-flex">
-                <img src="https://storage.googleapis.com/vue-course-api.appspot.com/vuefindcard/1758699598281.jpg" alt="user" class="user rounded-circle">
+                <img
+                  src="https://storage.googleapis.com/vue-course-api.appspot.com/vuefindcard/1758699598281.jpg"
+                  alt="user"
+                  class="user rounded-circle"
+                />
                 <div class="mx-3 d-flex flex-column justify-content-center">
                   <h2 class="fs-5">林思穎</h2>
                   <small class="text-secondary">2022年2月18日 11:32</small>
@@ -218,12 +299,21 @@
                   <span class="material-icons">grade</span>
                 </span>
               </div>
-              <p class="mt-3 mb-0">2019年度卡牌大會的紀念產品居然還找得到，光是這點就足以給好評，簡直是神店！</p>
+              <p class="mt-3 mb-0">
+                2019年度卡牌大會的紀念產品居然還找得到，光是這點就足以給好評，簡直是神店！
+              </p>
             </div>
-            <button type="button" class="btn p-0 align-self-end" @click="$router.push('/product/-N-HexEVmkB61Cs9WAf8')">
+            <button
+              type="button"
+              class="btn p-0 align-self-end"
+              @click="$router.push('/product/-N-HexEVmkB61Cs9WAf8')"
+            >
               <div class="d-flex">
                 <span class="ms-auto ps-2 me-2">Cardistry-Con 2019</span>
-                <img src="https://storage.googleapis.com/vue-course-api.appspot.com/vuefindcard/1650378822796.jpg" alt="Cardistry-Con 2019">
+                <img
+                  src="https://storage.googleapis.com/vue-course-api.appspot.com/vuefindcard/1650378822796.jpg"
+                  alt="Cardistry-Con 2019"
+                />
               </div>
             </button>
           </div>
@@ -238,66 +328,136 @@
           <ul class="accordion list-unstyled" id="accordionFAQ">
             <li class="accordion-item">
               <h4 class="accordion-header" id="headingOne">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseOne"
+                  aria-expanded="true"
+                  aria-controls="collapseOne"
+                >
                   <span class="text-center lh-lg fw-bold me-3">Q1</span>
                   運送及付款方式有哪些呢？
                 </button>
               </h4>
-              <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionFAQ">
+              <div
+                id="collapseOne"
+                class="accordion-collapse collapse"
+                aria-labelledby="headingOne"
+                data-bs-parent="#accordionFAQ"
+              >
                 <div class="accordion-body bg-white">
-                  <p class="p-3 mb-0 ms-4">可以選擇超商取貨及宅配，付款方式有銀行轉帳及信用卡支付。</p>
+                  <p class="p-3 mb-0 ms-4">
+                    可以選擇超商取貨及宅配，付款方式有銀行轉帳及信用卡支付。
+                  </p>
                 </div>
               </div>
             </li>
             <li class="accordion-item">
               <h4 class="accordion-header" id="headingTwo">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseTwo"
+                  aria-expanded="true"
+                  aria-controls="collapseTwo"
+                >
                   <span class="text-center lh-lg fw-bold me-3">Q2</span>
                   退貨方式及規則
                 </button>
               </h4>
-              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionFAQ">
+              <div
+                id="collapseTwo"
+                class="accordion-collapse collapse"
+                aria-labelledby="headingTwo"
+                data-bs-parent="#accordionFAQ"
+              >
                 <div class="accordion-body bg-white">
-                  <p class="p-3 mb-0 ms-4">因商品封條為一次性包裝，商品退貨時必須回復至您收到商品時的原始狀態，請您務必確認後再行拆封，感謝您的配合。</p>
+                  <p class="p-3 mb-0 ms-4">
+                    因商品封條為一次性包裝，商品退貨時必須回復至您收到商品時的原始狀態，請您務必確認後再行拆封，感謝您的配合。
+                  </p>
                 </div>
               </div>
             </li>
             <li class="accordion-item">
               <h4 class="accordion-header" id="headingThree">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseThree"
+                  aria-expanded="true"
+                  aria-controls="collapseThree"
+                >
                   <span class="text-center lh-lg fw-bold me-3">Q3</span>
                   有辦法單獨購買某張卡嗎？
                 </button>
               </h4>
-              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionFAQ">
+              <div
+                id="collapseThree"
+                class="accordion-collapse collapse"
+                aria-labelledby="headingThree"
+                data-bs-parent="#accordionFAQ"
+              >
                 <div class="accordion-body bg-white">
-                  <p class="p-3 mb-0 ms-4">因為本店進牌都是以副來算，最小購買單位是一副，因此無法單獨購買一張牌，感謝您的配合。</p>
+                  <p class="p-3 mb-0 ms-4">
+                    因為本店進牌都是以副來算，最小購買單位是一副，因此無法單獨購買一張牌，感謝您的配合。
+                  </p>
                 </div>
               </div>
             </li>
             <li class="accordion-item">
               <h4 class="accordion-header" id="headingFour">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseFour"
+                  aria-expanded="true"
+                  aria-controls="collapseFour"
+                >
                   <span class="text-center lh-lg fw-bold me-3">Q4</span>
                   產品有損，可以換貨嗎？
                 </button>
               </h4>
-              <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionFAQ">
+              <div
+                id="collapseFour"
+                class="accordion-collapse collapse"
+                aria-labelledby="headingFour"
+                data-bs-parent="#accordionFAQ"
+              >
                 <div class="accordion-body bg-white">
-                  <p class="p-3 mb-0 ms-4">如果當場發現產品有損，將立刻幫您換新，並附上本店折價券。</p>
+                  <p class="p-3 mb-0 ms-4">
+                    如果當場發現產品有損，將立刻幫您換新，並附上本店折價券。
+                  </p>
                 </div>
               </div>
             </li>
             <li class="accordion-item">
               <h4 class="accordion-header" id="headingFive">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseFive"
+                  aria-expanded="true"
+                  aria-controls="collapseFive"
+                >
                   <span class="text-center lh-lg fw-bold me-3">Q5</span>
                   請問有賣其他魔術道具嗎？
                 </button>
               </h4>
-              <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionFAQ">
+              <div
+                id="collapseFive"
+                class="accordion-collapse collapse"
+                aria-labelledby="headingFive"
+                data-bs-parent="#accordionFAQ"
+              >
                 <div class="accordion-body bg-white">
-                  <p class="p-3 mb-0 ms-4">本店「找。牌」為專門販賣撲克牌的牌店，因此只有販售牌類產品。</p>
+                  <p class="p-3 mb-0 ms-4">
+                    本店「找。牌」為專門販賣撲克牌的牌店，因此只有販售牌類產品。
+                  </p>
                 </div>
               </div>
             </li>
@@ -309,127 +469,135 @@
   <Footer />
 </template>
 
-<script>
+<script setup>
 import Carousel from 'bootstrap/js/dist/carousel'
 import SectionOnSale from '@/components/SectionOnSale.vue'
 import SectionBanner from '@/components/SectionBanner.vue'
 import Footer from '@/components/Footer.vue'
+
+import { ref, watch, inject, onMounted, onUnmounted } from 'vue'
+import { useRouter } from 'vue-router'
+import axios from 'axios'
+
+import { storeToRefs } from 'pinia'
 import cartStore from '@/stores/cartStore'
-import { mapActions, mapState } from 'pinia'
-export default {
-  data () {
-    return {
-      carousel: {},
-      buyNowLoading: false,
-      SectionCouponBanner: {
-        bgImg: 'url(https://storage.googleapis.com/vue-course-api.appspot.com/vuefindcard/1758699281574.jpg)',
-        attachment: true,
-        title: '周年慶優惠券',
-        titleEn: 'Coupon',
-        text: '尚未領取周年慶優惠大獎嗎？快來翻出你的專屬優惠券',
-        btnText: '手刀領取',
-        btnPath: '/coupon'
-      },
-      SectionTriviaBanner: {
-        bgImg: 'url(https://storage.googleapis.com/vue-course-api.appspot.com/vuefindcard/1758699356415.jpg)',
-        title: '撲克冷知識',
-        titleEn: 'Trivia',
-        text: '你知道嗎？將撲克牌四種花色重疊在一起的話，就會跑出星星喔',
-        btnText: '了解更多',
-        btnPath: '/trivia'
-      },
-      height: 0
-    }
-  },
-  computed: {
-    ...mapState(cartStore, ['loadingItem'])
-  },
-  components: {
-    SectionOnSale,
-    SectionBanner,
-    Footer
-  },
-  watch: {
-    height () {
-      if (this.height >= 220) {
-        this.$refs.about.classList.add('animation')
-      }
-      if (this.height >= 1940 && document.body.clientWidth >= 768) {
-        this.$refs.news.classList.add('animation')
-      } else if (this.height >= 1500 && document.body.clientWidth < 768) {
-        this.$refs.news.classList.add('animation')
-      }
-      if (this.height >= 3100) {
-        this.$refs.feedback.classList.add('animation')
-      }
-    }
-  },
-  methods: {
-    scroll () {
-      this.height = document.body.scrollTop || document.documentElement.scrollTop
-    },
-    buyNow (id) {
-      this.buyNowLoading = true
-      const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/cart`
-      this.$http.post(api, { data: { product_id: id, qty: 1 } }).then(() => {
-        this.$swal('商品已加入購物車')
-        this.buyNowLoading = false
-        this.$router.push('/cart')
-      })
-    },
-    ...mapActions(cartStore, ['addCart'])
-  },
-  mounted () {
-    this.carousel = new Carousel(this.$refs.carousel)
-    document.addEventListener('scroll', this.scroll)
-  },
-  unmounted () {
-    document.removeEventListener('scroll', this.scroll)
-  }
+const cStore = cartStore()
+const { loadingItem } = storeToRefs(cStore)
+const { addCart } = cStore
+
+const router = useRouter()
+
+// ref DOM
+const carouselRef = ref(null)
+const about = ref(null)
+const news = ref(null)
+const feedback = ref(null)
+
+const bsCarousel = ref({})
+const buyNowLoading = ref(false)
+const SectionCouponBanner = ref({
+  bgImg:
+    'url(https://storage.googleapis.com/vue-course-api.appspot.com/vuefindcard/1758699281574.jpg)',
+  attachment: true,
+  title: '周年慶優惠券',
+  titleEn: 'Coupon',
+  text: '尚未領取周年慶優惠大獎嗎？快來翻出你的專屬優惠券',
+  btnText: '手刀領取',
+  btnPath: '/coupon',
+})
+const SectionTriviaBanner = ref({
+  bgImg:
+    'url(https://storage.googleapis.com/vue-course-api.appspot.com/vuefindcard/1758699356415.jpg)',
+  title: '撲克冷知識',
+  titleEn: 'Trivia',
+  text: '你知道嗎？將撲克牌四種花色重疊在一起的話，就會跑出星星喔',
+  btnText: '了解更多',
+  btnPath: '/trivia',
+})
+
+const height = ref(0)
+function scroll() {
+  height.value = document.body.scrollTop || document.documentElement.scrollTop
 }
+
+const swal = inject('$swal')
+function buyNow(id) {
+  buyNowLoading.value = true
+  const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/cart`
+  axios.post(api, { data: { product_id: id, qty: 1 } }).then(() => {
+    swal('商品已加入購物車')
+    buyNowLoading.value = false
+    router.push('/cart')
+  })
+}
+
+onMounted(() => {
+  bsCarousel.value = new Carousel(carouselRef.value)
+
+  scroll()
+  window.addEventListener('scroll', scroll)
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animation')
+        observer.unobserve(entry.target)
+      }
+    })
+  }, {
+    threshold: 0.15
+  })
+  if (about.value) observer.observe(about.value)
+  if (news.value) observer.observe(news.value)
+  if (feedback.value) observer.observe(feedback.value)
+})
+onUnmounted(() => {
+  window.removeEventListener('scroll', scroll)
+})
 </script>
 
 <style lang="scss" scoped>
 //hero banner開始
-.heroBanner{
+.heroBanner {
   height: calc(100vh - 56px);
   margin-top: 56px;
-  .img-fit{
+  .img-fit {
     object-fit: cover;
   }
-  .slogan{
+  .slogan {
     background-color: #587778;
-    top:0;
+    top: 0;
     @media (max-width: 992px) {
       background-color: transparent;
       z-index: 2;
-      background-color: rgba(0, 0, 0, .6);
-      border: 5px double rgba(254, 254, 254, .6);
+      background-color: rgba(0, 0, 0, 0.6);
+      border: 5px double rgba(254, 254, 254, 0.6);
     }
-    p{
+    p {
       width: 18em;
       white-space: nowrap;
       overflow: hidden;
-      animation: typing 2s steps(18),Wcaret 2s steps(1);
+      animation:
+        typing 2s steps(18),
+        Wcaret 2s steps(1);
       @media (max-width: 424px) {
         font-size: 16px !important;
       }
     }
   }
-  .btn{
-    transition: .8s;
-    color: #FFFFFF;
+  .btn {
+    transition: 0.8s;
+    color: #ffffff;
     &:hover,
     &:focus {
-      box-shadow: inset 0 0 0 2em #FFFFFF;
+      box-shadow: inset 0 0 0 2em #ffffff;
       color: #587778;
     }
     @media (max-width: 992px) {
       background-color: #587778;
-      color: #FFFFFF;
+      color: #ffffff;
     }
   }
-  .userScroll{
+  .userScroll {
     position: absolute;
     width: 100%;
     height: 40px;
@@ -439,13 +607,23 @@ export default {
   }
 }
 @keyframes typing {
-  0% { width: 0 }
+  0% {
+    width: 0;
+  }
 }
 @keyframes Wcaret {
-  0% { border-right: .05em solid #ffffff; }
-  33% { border-right: .05em solid transparent; }
-  67% { border-right: .05em solid #ffffff; }
-  100% { border-right: .05em solid transparent; }
+  0% {
+    border-right: 0.05em solid #ffffff;
+  }
+  33% {
+    border-right: 0.05em solid transparent;
+  }
+  67% {
+    border-right: 0.05em solid #ffffff;
+  }
+  100% {
+    border-right: 0.05em solid transparent;
+  }
 }
 @keyframes slideDown {
   0% {
@@ -460,28 +638,30 @@ export default {
 //hero banner結束
 
 //關於我們開始
-.about{
-  img{
+.about {
+  img {
     width: 90%;
     box-shadow: 20px 20px #587778;
     transform: translateY(-20px);
     opacity: 0;
-    transition: 1.5s .5s ease-out;
+    transition: 1.5s 0.5s ease-out;
   }
-  .slogan{
-    p{
+  .slogan {
+    p {
       width: 18em;
       white-space: nowrap;
       overflow: hidden;
       color: transparent;
     }
   }
-  &.animation{
-    .slogan p{
+  &.animation {
+    .slogan p {
       color: rgb(33, 37, 41);
-      animation: typing 2s steps(18),caret 2s steps(1);
+      animation:
+        typing 2s steps(18),
+        caret 2s steps(1);
     }
-    img{
+    img {
       transform: translateY(0);
       box-shadow: 20px 20px #587778;
       opacity: 1;
@@ -489,19 +669,27 @@ export default {
   }
 }
 @keyframes caret {
-  0% { border-right: .05em solid #212529; }
-  33% { border-right: .05em solid transparent; }
-  67% { border-right: .05em solid #212529; }
-  100% { border-right: .05em solid transparent; }
+  0% {
+    border-right: 0.05em solid #212529;
+  }
+  33% {
+    border-right: 0.05em solid transparent;
+  }
+  67% {
+    border-right: 0.05em solid #212529;
+  }
+  100% {
+    border-right: 0.05em solid transparent;
+  }
 }
-.text-indent{
+.text-indent {
   text-indent: 2em;
 }
 //關於我們結束
 
 //熱銷商品開始
-.hotSale .btn{
-  transition: .8s;
+.hotSale .btn {
+  transition: 0.8s;
   border-width: 2px;
   &:hover,
   &:focus {
@@ -509,31 +697,31 @@ export default {
     box-shadow: inset 0 0 0 2em #587778;
   }
 }
-.carousel{
-  .carousel-item{
+.carousel {
+  .carousel-item {
     background-size: cover;
     background-position: center;
     min-height: 500px;
-    &:nth-child(1){
-      background-image: url("https://storage.googleapis.com/vue-course-api.appspot.com/vuefindcard/1650378716872.jpg");
+    &:nth-child(1) {
+      background-image: url('https://storage.googleapis.com/vue-course-api.appspot.com/vuefindcard/1650378716872.jpg');
     }
-    &:nth-child(2){
-      background-image: url("https://storage.googleapis.com/vue-course-api.appspot.com/vuefindcard/1650378700094.jpg");
+    &:nth-child(2) {
+      background-image: url('https://storage.googleapis.com/vue-course-api.appspot.com/vuefindcard/1650378700094.jpg');
     }
-    @media (max-width:992px) {
+    @media (max-width: 992px) {
       min-height: 400px;
     }
-    @media (max-width:767px) {
+    @media (max-width: 767px) {
       min-height: 300px;
     }
-    @media (max-width:576px) {
+    @media (max-width: 576px) {
       min-height: 250px;
     }
   }
-  .carousel-indicators{
+  .carousel-indicators {
     bottom: 0;
   }
-  .carousel-indicators [data-bs-target]{
+  .carousel-indicators [data-bs-target] {
     width: 10px;
     height: 10px;
     border-radius: 50%;
@@ -543,67 +731,67 @@ export default {
 //熱銷商品結束
 
 //最新消息開始
-.news{
-  img{
+.news {
+  img {
     height: 400px;
     width: 100%;
     object-fit: cover;
   }
-  &.animation .list-group-item{
+  &.animation .list-group-item {
     animation: flipX 1.2s;
   }
 }
 @keyframes flipX {
-  0%{
+  0% {
     transform: perspective(600px) rotateX(-180deg);
     opacity: 0;
   }
-  100%{
+  100% {
     transform: perspective(600px) rotateX(-360deg);
   }
 }
 //最新消息結束
 
 //顧客回饋開始
-.feedback{
-  img{
+.feedback {
+  img {
     width: 30px;
     height: 30px;
     object-fit: cover;
   }
-  .user{
+  .user {
     width: 50px;
     height: 50px;
   }
-  .btn:hover{
+  .btn:hover {
     background-color: #587778;
     color: #ffffff;
   }
-  .btn span{
+  .btn span {
     line-height: 30px;
   }
-  .material-icons{
+  .material-icons {
     font-size: 12px;
     vertical-align: bottom;
   }
-  &.animation > div{
+  &.animation > div {
     animation: rotateXIn 1.2s ease-out;
   }
 }
 @keyframes rotateXIn {
-  0%{
+  0% {
     transform: perspective(600px) translate3d(0, -60px, -2000px) rotateX(75deg);
     opacity: 0;
   }
-  5%{
-    transform: perspective(600px) translate3d(0, -60px, -1500px) rotateX(75deg)
+  5% {
+    transform: perspective(600px) translate3d(0, -60px, -1500px) rotateX(75deg);
   }
 }
 //顧客回饋結束
 
 //常見問題開始
-.faq{
-  .accordion-button{
+.faq {
+  .accordion-button {
     background-color: #ffffff;
     color: #212529;
   }

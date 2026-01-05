@@ -15,10 +15,8 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: ['info']
-}
+<script setup>
+const props = defineProps(['info'])
 </script>
 
 <style lang="scss" scoped>
