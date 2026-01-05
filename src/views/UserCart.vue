@@ -534,9 +534,9 @@ import { ref, reactive, computed, inject } from 'vue'
 import { storeToRefs } from 'pinia'
 import axios from 'axios'
 
-const store = cartStore()
-const { cart, isLoading } = storeToRefs(store)
-const { getCart, delCartProduct, delAllCartProducts } = store
+const cStore = cartStore()
+const { cart, isLoading } = storeToRefs(cStore)
+const { getCart, delCartProduct, delAllCartProducts } = cStore
 
 const swal = inject('$swal')
 
