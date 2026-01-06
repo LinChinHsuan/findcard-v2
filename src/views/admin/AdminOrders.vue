@@ -28,7 +28,15 @@
             <td class="text-end">{{ $filters.currency(item.total) }}</td>
             <td>
               <div class="form-check form-switch d-flex justify-content-center">
-                <input class="form-check-input me-2" type="checkbox" role="switch" :id="item.id" :checked="item.is_paid" v-model="item.is_paid" @change="updateOrder(item)">
+                <input
+                  class="form-check-input me-2"
+                  type="checkbox"
+                  role="switch"
+                  :id="item.id"
+                  :checked="item.is_paid"
+                  v-model="item.is_paid"
+                  @change="updateOrder(item)"
+                />
                 <label class="form-check-label" :for="item.id">
                   <span v-if="item.is_paid" class="text-success fw-bold">已付款</span>
                   <span v-else class="text-muted">未付款</span>
@@ -37,8 +45,20 @@
             </td>
             <td>
               <div class="btn-group">
-                <button class="btn btn-outline-primary fw-bold" type="button" @click="openOrderModal(item)">檢視</button>
-                <button class="btn btn-outline-danger fw-bold" type="button" @click="openDelModal(item)">刪除</button>
+                <button
+                  class="btn btn-outline-primary fw-bold"
+                  type="button"
+                  @click="openOrderModal(item)"
+                >
+                  檢視
+                </button>
+                <button
+                  class="btn btn-outline-danger fw-bold"
+                  type="button"
+                  @click="openDelModal(item)"
+                >
+                  刪除
+                </button>
               </div>
             </td>
           </tr>
@@ -51,77 +71,77 @@
   <Pagination :pages="pagination" @emit-pages="getOrders" />
 </template>
 
-<script>
-import messageStore from '@/stores/messageStore'
-import { mapActions } from 'pinia'
+<script setup>
 import OrderModal from '@/components/OrderModal.vue'
 import DelModal from '@/components/DelModal.vue'
 import Pagination from '@/components/Pagination.vue'
-export default {
-  data () {
-    return {
-      orders: {},
-      pagination: {},
-      tempOrder: {},
-      isLoading: false
+
+import { ref, onMounted } from 'vue'
+import axios from 'axios'
+
+import messageStore from '@/stores/messageStore'
+const mStore = messageStore()
+const { pushMessage } = mStore
+
+const orderModal = ref(null)
+const delModal = ref(null)
+
+const orders = ref([])
+const pagination = ref({})
+const tempOrder = ref({})
+const isLoading = ref(false)
+
+function getOrders(page = 1) {
+  const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/admin/orders?page=${page}`
+  isLoading.value = true
+  axios.get(api).then((res) => {
+    isLoading.value = false
+    if (res.data.success) {
+      orders.value = res.data.orders
+      pagination.value = res.data.pagination
     }
-  },
-  components: {
-    OrderModal,
-    DelModal,
-    Pagination
-  },
-  methods: {
-    getOrders (page = 1) {
-      const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/admin/orders?page=${page}`
-      this.isLoading = true
-      this.$http.get(api).then((res) => {
-        this.isLoading = false
-        if (res.data.success) {
-          this.orders = res.data.orders
-          this.pagination = res.data.pagination
-        }
-      })
-    },
-    openOrderModal (item) {
-      this.tempOrder = { ...item }
-      this.$refs.orderModal.showModal()
-    },
-    openDelModal (item) {
-      this.tempOrder = { ...item }
-      this.tempOrder.title = `${item.user.name}的訂單`
-      this.$refs.delModal.showModal()
-    },
-    updateOrder (item) {
-      const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/admin/order/${item.id}`
-      item.paid_date = new Date().getTime() / 1000
-      this.$http.put(api, { data: item }).then((res) => {
-        this.getOrders()
-        this.$refs.orderModal.hideModal()
-        this.pushMessage(res, '更新訂單')
-      })
-    },
-    delOrder () {
-      const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/admin/order/${this.tempOrder.id}`
-      this.$http.delete(api).then((res) => {
-        this.getOrders()
-        this.$refs.delModal.hideModal()
-        this.pushMessage(res, '刪除訂單')
-      })
-    },
-    ...mapActions(messageStore, ['pushMessage'])
-  },
-  created () {
-    this.getOrders()
-  }
+  })
 }
+function updateOrder(item) {
+  const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/admin/order/${item.id}`
+  item.paid_date = new Date().getTime() / 1000
+  axios.put(api, { data: item }).then((res) => {
+    getOrders()
+    orderModal.value.hideModal()
+    pushMessage(res, '更新訂單')
+  })
+}
+function delOrder() {
+  const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/admin/order/${tempOrder.value.id}`
+  axios.delete(api).then((res) => {
+    getOrders()
+    delModal.value.hideModal()
+    pushMessage(res, '刪除訂單')
+  })
+}
+
+function openOrderModal(item) {
+  tempOrder.value = { ...item }
+  orderModal.value.showModal()
+}
+function openDelModal(item) {
+  tempOrder.value = { ...item }
+  tempOrder.value.title = `${item.user.name}的訂單`
+  delModal.value.showModal()
+}
+
+onMounted(() => {
+  getOrders()
+})
 </script>
 
 <style lang="scss" scoped>
-th,td{
+th,
+td {
   white-space: nowrap;
 }
-.btn:hover,.btn:active{
-  color: #FFFFFF;
+.btn:hover,
+.btn:active {
+  color: #ffffff;
 }
 </style>

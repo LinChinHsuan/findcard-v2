@@ -103,27 +103,38 @@
   </div>
 </template>
 
-<script>
-import modalMixin from '@/mixins/modalMixin'
-export default {
-  props: {
-    order: {
-      type: Object,
-      default () { return {} }
-    }
-  },
-  watch: {
-    order () {
-      this.tempOrder = { ...this.order }
-    }
-  },
-  data () {
-    return {
-      status: {},
-      modal: '',
-      tempOrder: {}
-    }
-  },
-  mixins: [modalMixin]
+<script setup>
+import { ref, watch, onMounted } from 'vue'
+import Modal from 'bootstrap/js/dist/modal'
+
+const props = defineProps({
+  order: {
+    type: Object,
+    default: () => ({})
+  }
+})
+const tempOrder = ref({})
+watch(() => props.order, (newVal) => {
+  if (newVal) {
+    tempOrder.value = { ...newVal }
+  }
+}, { deep: true })
+
+const modal = ref(null)
+let bsModal = null
+
+function showModal() {
+  bsModal.show()
 }
+function hideModal() {
+  bsModal.hide()
+}
+defineExpose({
+  showModal,
+  hideModal
+})
+
+onMounted(() => {
+  bsModal = new Modal(modal.value)
+})
 </script>
