@@ -15,17 +15,30 @@
           <tbody>
             <tr v-for="item in products" :key="item.id">
               <td style="width: 160px">
-                <img :src="item.imageUrl" :alt="item.title" width="160" height="100" class="img-fit">
+                <img
+                  :src="item.imageUrl"
+                  :alt="item.title"
+                  width="160"
+                  height="100"
+                  class="img-fit"
+                />
               </td>
               <td>
                 {{ item.title }}
               </td>
-              <td class="fs-5 text-end">
-                {{ item.price }}元
-              </td>
+              <td class="fs-5 text-end">{{ item.price }}元</td>
               <td class="text-center">
-                <button type="button" class="btn btn-primary fw-bold text-white" :disabled="loadingItem === item.id" @click.prevent="addCart(item.id, 1, true)">
-                  <div class="spinner-border text-white spinner-border-sm" role="status" v-if="loadingItem === item.id">
+                <button
+                  type="button"
+                  class="btn btn-primary fw-bold text-white"
+                  :disabled="loadingItem === item.id"
+                  @click.prevent="addCart(item.id, 1, true)"
+                >
+                  <div
+                    class="spinner-border text-white spinner-border-sm"
+                    role="status"
+                    v-if="loadingItem === item.id"
+                  >
                     <span class="visually-hidden">Loading...</span>
                   </div>
                   加到購物車
@@ -49,28 +62,37 @@
           </thead>
           <tbody>
             <template v-if="cart.carts">
-            <tr v-for="item in cart.carts" :key="item">
-              <td>
-                <button type="button" class="btn btn-outline-danger btn-sm p-2 d-flex align-items-center" @click="delCartProduct(item.id)">
-                  <span class="material-icons">delete</span>
-                </button>
-              </td>
-              <td>
-                {{ item.product.title }}
-                <div class="text-success" v-if="item.coupon">
-                  已套用優惠券
-                </div>
-              </td>
-              <td class="d-flex align-items-center">
-                <input type="number" class="form-control" min="1" :disabled="loadingItem === item.id" v-model.number="item.qty" @blur.prevent="updateCartProduct(item)">
-                / {{ item.product.unit }}
-              </td>
-              <td class="text-end">
-                <small v-if="!item.coupon">單價：</small>
-                <small class="text-success" v-else>折扣價：</small>
-                {{ parseInt(item.final_total) }}
-              </td>
-            </tr>
+              <tr v-for="item in cart.carts" :key="item">
+                <td>
+                  <button
+                    type="button"
+                    class="btn btn-outline-danger btn-sm p-2 d-flex align-items-center"
+                    @click="delCartProduct(item.id)"
+                  >
+                    <span class="material-icons">delete</span>
+                  </button>
+                </td>
+                <td>
+                  {{ item.product.title }}
+                  <div class="text-success" v-if="item.coupon">已套用優惠券</div>
+                </td>
+                <td class="d-flex align-items-center">
+                  <input
+                    type="number"
+                    class="form-control"
+                    min="1"
+                    :disabled="loadingItem === item.id"
+                    v-model.number="item.qty"
+                    @blur.prevent="updateCartProduct(item)"
+                  />
+                  / {{ item.product.unit }}
+                </td>
+                <td class="text-end">
+                  <small v-if="!item.coupon">單價：</small>
+                  <small class="text-success" v-else>折扣價：</small>
+                  {{ parseInt(item.final_total) }}
+                </td>
+              </tr>
             </template>
             <template v-else>
               <tr>
@@ -97,8 +119,14 @@
           </button>
         </div>
         <div class="input-group ms-auto">
-          <input type="text" class="form-control" placeholder="請輸入優惠碼" v-model="coupon">
-          <button class="btn btn-primary fw-bold text-white" type="button" @click.prevent="useCoupon">套用優惠碼</button>
+          <input type="text" class="form-control" placeholder="請輸入優惠碼" v-model="coupon" />
+          <button
+            class="btn btn-primary fw-bold text-white"
+            type="button"
+            @click.prevent="useCoupon"
+          >
+            套用優惠碼
+          </button>
         </div>
       </div>
     </div>
@@ -108,34 +136,79 @@
       <VForm class="col-lg-6" v-slot="{ errors }" @submit="createOrder">
         <div class="mb-3">
           <label for="email" class="form-label">Email</label>
-          <VField id="email" name="email" type="email" class="form-control" :class="{ 'is-invalid': errors['email'] }"
-            placeholder="請輸入 Email" rules="email|required" v-model="form.user.email"></VField>
+          <VField
+            id="email"
+            name="email"
+            type="email"
+            class="form-control"
+            :class="{ 'is-invalid': errors['email'] }"
+            placeholder="請輸入 Email"
+            rules="email|required"
+            v-model="form.user.email"
+          ></VField>
           <ErrorMessage name="email" class="invalid-feedback"></ErrorMessage>
         </div>
         <div class="mb-3">
           <label for="name" class="form-label">收件人姓名</label>
-          <VField id="name" name="姓名" type="text" class="form-control" :class="{ 'is-invalid': errors['姓名'] }"
-            placeholder="請輸入姓名" rules="required" v-model="form.user.name"></VField>
+          <VField
+            id="name"
+            name="姓名"
+            type="text"
+            class="form-control"
+            :class="{ 'is-invalid': errors['姓名'] }"
+            placeholder="請輸入姓名"
+            rules="required"
+            v-model="form.user.name"
+          ></VField>
           <ErrorMessage name="姓名" class="invalid-feedback"></ErrorMessage>
         </div>
         <div class="mb-3">
           <label for="tel" class="form-label">收件人電話</label>
-          <VField id="tel" name="電話" type="tel" class="form-control" :class="{ 'is-invalid': errors['電話'] }"
-            placeholder="請輸入電話" rules="required" v-model="form.user.tel"></VField>
+          <VField
+            id="tel"
+            name="電話"
+            type="tel"
+            class="form-control"
+            :class="{ 'is-invalid': errors['電話'] }"
+            placeholder="請輸入電話"
+            rules="required"
+            v-model="form.user.tel"
+          ></VField>
           <ErrorMessage name="電話" class="invalid-feedback"></ErrorMessage>
         </div>
         <div class="mb-3">
           <label for="address" class="form-label">收件人地址</label>
-          <VField id="address" name="地址" type="text" class="form-control" :class="{ 'is-invalid': errors['地址'] }"
-            placeholder="請輸入地址" rules="required" v-model="form.user.address"></VField>
+          <VField
+            id="address"
+            name="地址"
+            type="text"
+            class="form-control"
+            :class="{ 'is-invalid': errors['地址'] }"
+            placeholder="請輸入地址"
+            rules="required"
+            v-model="form.user.address"
+          ></VField>
           <ErrorMessage name="地址" class="invalid-feedback"></ErrorMessage>
         </div>
         <div class="mb-3">
           <label for="message" class="form-label">留言</label>
-          <textarea name="" id="message" class="form-control" cols="30" rows="10" v-model="form.message"></textarea>
+          <textarea
+            name=""
+            id="message"
+            class="form-control"
+            cols="30"
+            rows="10"
+            v-model="form.message"
+          ></textarea>
         </div>
         <div class="text-end">
-          <button type="submit" class="btn btn-primary btn-lg fw-bold text-white" @submit="createOrder">送出訂單</button>
+          <button
+            type="submit"
+            class="btn btn-primary btn-lg fw-bold text-white"
+            @submit="createOrder"
+          >
+            送出訂單
+          </button>
         </div>
       </VForm>
     </template>
@@ -189,8 +262,16 @@
           </tbody>
         </table>
         <div class="d-flex mt-4">
-          <button class="btn btn-primary btn-lg fw-bold text-white" type="button" @click="step = 1">重新購物</button>
-          <button class="btn btn-primary btn-lg fw-bold text-white ms-auto" type="button" @click="payOrder">確認付款去</button>
+          <button class="btn btn-primary btn-lg fw-bold text-white" type="button" @click="step = 1">
+            重新購物
+          </button>
+          <button
+            class="btn btn-primary btn-lg fw-bold text-white ms-auto"
+            type="button"
+            @click="payOrder"
+          >
+            確認付款去
+          </button>
         </div>
       </form>
     </template>
@@ -201,124 +282,125 @@
           <p class="fs-2 fw-bold mb-5">付款成功</p>
           <p class="mb-0">感謝您的訂購</p>
           <p class="mb-0">商品預計於三個工作天內寄送（不含週休及國定例假日）</p>
-          <p class="mb-3">再請留意簡訊通知及配送人員的電話 </p>
-          <button class="btn btn-primary btn-lg align-self-center fw-bold text-white" type="button" @click="step = 1">重新購物</button>
+          <p class="mb-3">再請留意簡訊通知及配送人員的電話</p>
+          <button
+            class="btn btn-primary btn-lg align-self-center fw-bold text-white"
+            type="button"
+            @click="step = 1"
+          >
+            重新購物
+          </button>
         </div>
       </div>
     </template>
   </div>
 </template>
 
-<script>
+<script setup>
 import cartStore from '@/stores/cartStore'
 import messageStore from '@/stores/messageStore'
-import { mapState, mapActions } from 'pinia'
+import { ref } from 'vue'
+import { storeToRefs } from 'pinia'
+import axios from 'axios'
 
-export default {
-  data () {
-    return {
-      products: [],
-      cart: {},
-      coupon: '',
-      step: 1,
-      form: {
-        user: {
-          name: 'test',
-          email: 'test@gmail.com',
-          tel: '0912346768',
-          address: 'kaohsiung'
-        },
-        message: '這是留言'
-      },
-      orderId: '',
-      order: ''
+const cStore = cartStore()
+const { cart, isLoading, loadingItem } = storeToRefs(cStore)
+const { getCart, addCart, delCartProduct } = cStore
+
+const mStore = messageStore()
+const { pushMessage } = mStore
+
+const products = ref([])
+const coupon = ref('')
+const step = ref(1)
+const orderId = ref('')
+const order = ref({ 
+  user: {}
+})
+const form = ref({
+  user: {
+    name: 'test',
+    email: 'test@gmail.com',
+    tel: '0912346768',
+    address: 'kaohsiung',
+  },
+  message: '這是留言',
+})
+
+function getProducts() {
+  const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/admin/products?page=1`
+  axios.get(api).then((res) => {
+    if (res.data.success) {
+      products.value = res.data.products
+      products.value.splice(4, 5)
     }
-  },
-  computed: {
-    ...mapState(cartStore, ['isLoading', 'loadingItem'])
-  },
-  methods: {
-    getProducts () {
-      const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/admin/products?page=1`
-      this.$http.get(api).then((res) => {
-        if (res.data.success) {
-          this.products = res.data.products
-          this.products.splice(4, 5)
-        }
-      })
-    },
-    delAllCartProducts () {
-      const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/carts`
-      this.$http.delete(api).then((res) => {
-        this.getCart()
-        this.pushMessage(res, '刪除商品')
-      })
-    },
-    updateCartProduct (item) {
-      this.isLoading = true
-      this.loadingItem = item.id
-      const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/cart/${item.id}`
-      this.$http.put(api, { data: { product_id: item.id, qty: item.qty } }).then((res) => {
-        this.getCart()
-        this.pushMessage(res, '編輯訂單')
-        this.loadingItem = ''
-      })
-    },
-    useCoupon () {
-      this.isLoading = true
-      const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/coupon`
-      this.$http.post(api, { data: { code: this.coupon } }).then((res) => {
-        this.getCart()
-        this.pushMessage(res, '使用優惠券')
-        this.coupon = ''
-        this.isLoading = false
-      })
-    },
-    createOrder () {
-      const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/order`
-      const order = this.form
-      this.$http.post(api, { data: order })
-        .then((res) => {
-          this.cart = {}
-          this.orderId = res.data.orderId
-          this.getOrder(this.orderId)
-          this.step = 2
-        })
-    },
-    getOrder (id) {
-      const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/order/${id}`
-      this.$http.get(api)
-        .then((res) => {
-          this.order = res.data.order
-        })
-    },
-    payOrder () {
-      const id = this.orderId
-      const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/pay/${id}`
-      this.$http.post(api)
-        .then(() => {
-          this.step = 3
-          this.getOrder(id)
-        })
-    },
-    ...mapActions(cartStore, ['getCart', 'addCart', 'delCartProduct']),
-    ...mapActions(messageStore, ['pushMessage'])
-  },
-  created () {
-    this.getProducts()
-    this.getCart()
-  }
+  })
 }
+function delAllCartProducts() {
+  const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/carts`
+  axios.delete(api).then((res) => {
+    getCart()
+    pushMessage(res, '刪除商品')
+  })
+}
+function updateCartProduct(item) {
+  isLoading.value = true
+  loadingItem.value  = item.id
+  const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/cart/${item.id}`
+  axios.put(api, { data: { product_id: item.id, qty: item.qty } }).then((res) => {
+    getCart()
+    pushMessage(res, '編輯訂單')
+    loadingItem.value = ''
+  })
+}
+function useCoupon() {
+  isLoading.value = true
+  const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/coupon`
+  axios.post(api, { data: { code: coupon.value } }).then((res) => {
+    getCart()
+    pushMessage(res, '使用優惠券')
+    coupon.value = ''
+    isLoading.value = false
+  })
+}
+function createOrder() {
+  const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/order`
+  axios.post(api, { data: form.value }).then((res) => {
+    getCart()
+    orderId.value = res.data.orderId
+    getOrder(orderId.value)
+    step.value = 2
+  })
+}
+function getOrder(id) {
+  const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/order/${id}`
+  axios.get(api).then((res) => {
+    order.value = res.data.order
+  })
+}
+function payOrder() {
+  const id = orderId.value
+  const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/pay/${id}`
+  axios.post(api).then(() => {
+    step.value = 3
+    getOrder(id)
+  })
+}
+
+getProducts()
+getCart()
 </script>
 
 <style lang="scss" scoped>
-.img-fit{
+.img-fit {
   object-fit: cover;
 }
-th,td{
+th,
+td {
   white-space: nowrap;
 }
-.btn:hover,.btn:active{
-  color: #FFFFFF;
+.btn:hover,
+.btn:active {
+  color: #ffffff;
 }
 </style>
