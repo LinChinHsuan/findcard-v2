@@ -166,7 +166,7 @@ const { addCart } = cStore
 const route = useRoute()
 
 const carouselRef = ref(null)
-const bsCarousel = ref(null)
+let bsCarousel = null
 
 const product = ref({})
 
@@ -198,7 +198,7 @@ function getProduct() {
       // 等 Vue 把產品圖片渲染到 DOM 後，再啟動輪播
       nextTick(() => {
         if (carouselRef.value) {
-          bsCarousel.value = new Carousel(carouselRef.value)
+          bsCarousel = new Carousel(carouselRef.value)
         }
       })
     }

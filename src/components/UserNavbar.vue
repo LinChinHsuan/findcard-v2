@@ -76,14 +76,14 @@ const { favoriteNum } = storeToRefs(favStore)
 const { cartNum } = storeToRefs(cStore)
 
 const navbarCollapse = ref(null)
-const bsCollapse = ref(null)
+let bsCollapse = null
 const isCollapse = ref(false)
 
 const status = ref('')
 watch(route, (n)=>{
   if (document.body.offsetWidth < 992) {
     if (isCollapse.value) {
-      bsCollapse.value.hide()
+      bsCollapse.hide()
     }
   }
   status.value = n.name
@@ -94,7 +94,7 @@ onMounted(() => {
   getFavorite()
   status.value = route.name
 
-  bsCollapse.value = new Collapse(navbarCollapse.value, {
+  bsCollapse = new Collapse(navbarCollapse.value, {
     toggle: false // 初始化時不要切換選單開關
   })
 })

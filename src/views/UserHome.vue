@@ -493,7 +493,7 @@ const about = ref(null)
 const news = ref(null)
 const feedback = ref(null)
 
-const bsCarousel = ref({})
+let bsCarousel = null
 const buyNowLoading = ref(false)
 const SectionCouponBanner = ref({
   bgImg:
@@ -532,7 +532,7 @@ function buyNow(id) {
 }
 
 onMounted(() => {
-  bsCarousel.value = new Carousel(carouselRef.value)
+  bsCarousel = new Carousel(carouselRef.value)
 
   scroll()
   window.addEventListener('scroll', scroll)

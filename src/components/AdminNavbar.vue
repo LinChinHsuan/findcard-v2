@@ -14,12 +14,11 @@
       aria-controls="navbarNav"
       aria-expanded="false"
       aria-label="Toggle navigation"
-      ref="navbarBtn"
       @click="isCollapse = !isCollapse"
     >
       <span class="material-icons fs-2" :class="{ active: isCollapse }">menu</span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
+    <div class="collapse navbar-collapse" id="navbarNav" ref="navbarCollapse">
       <ul class="navbar-nav w-100">
         <li class="nav-item">
           <RouterLink
@@ -70,7 +69,7 @@
 </template>
 
 <script setup>
-import 'bootstrap/js/dist/collapse'
+import Collapse from 'bootstrap/js/dist/collapse'
 import { ref, watch, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import axios from 'axios'
@@ -78,13 +77,16 @@ import axios from 'axios'
 const route = useRoute()
 const router = useRouter()
 
+const navbarCollapse = ref(null)
+let bsCollapse = null
 const isCollapse = ref(false)
 const status = ref('')
-const navbarBtn = ref(null)
 
 watch(() => route.name, (newName) => {
   if (document.body.offsetWidth < 992) {
-    navbarBtn.value.click()
+    if (isCollapse.value) {
+      bsCollapse.hide()
+    }
   }
   status.value = newName
 })
@@ -100,6 +102,10 @@ function logout() {
 
 onMounted(() => {
   status.value = route.name
+
+  bsCollapse = new Collapse(navbarCollapse.value, {
+    toggle: false // 初始化時不要切換選單開關
+  })
 })
 </script>
 
