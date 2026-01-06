@@ -4,20 +4,15 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import Toast from '@/components/Toast.vue'
 import messageStore from '@/stores/messageStore'
-import { mapState, mapActions } from 'pinia'
+import { storeToRefs } from 'pinia'
 
-export default {
-  components: { Toast },
-  computed: {
-    ...mapState(messageStore, ['messages'])
-  },
-  methods: {
-    ...mapActions(messageStore, ['pushMessage'])
-  }
-}
+const mStore = messageStore()
+
+const { messages } = storeToRefs(mStore)
+const { pushMessage } = mStore
 </script>
 
 <style lang="scss" scoped>

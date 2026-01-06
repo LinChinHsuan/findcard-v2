@@ -11,20 +11,18 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import Toast from 'bootstrap/js/dist/toast'
+import { ref, onMounted } from 'vue'
 
-export default {
-  name: 'Toast',
-  props: [
-    'msg'
-  ],
-  mounted () {
-    const toastEl = this.$refs.toast
-    const toast = new Toast(toastEl, {
+const props = defineProps(['msg'])
+
+const toast = ref(null)
+
+onMounted(()=>{
+    const bsToast = new Toast(toast.value, {
       delay: 6500
     })
-    toast.show()
-  }
-}
+    bsToast.show()
+})
 </script>
