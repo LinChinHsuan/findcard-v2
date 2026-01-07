@@ -102,14 +102,17 @@ const emit = defineEmits(['update-coupon'])
 const tempCoupon = ref({})
 const due_date = ref('')
 
-watch(() => props.coupon, (newVal) => {
-  tempCoupon.value = { ...newVal }
-  if (newVal.id) {
-    due_date.value = new Date(tempCoupon.value.due_date * 1000).toISOString().split('T')[0]
-  } else {
-    due_date.value = ''
-  }
-})
+watch(
+  () => props.coupon,
+  (newVal) => {
+    tempCoupon.value = { ...newVal }
+    if (newVal.id) {
+      due_date.value = new Date(tempCoupon.value.due_date * 1000).toISOString().split('T')[0]
+    } else {
+      due_date.value = ''
+    }
+  },
+)
 watch(due_date, (newVal) => {
   if (newVal) {
     tempCoupon.value.due_date = Math.floor(new Date(newVal) / 1000)

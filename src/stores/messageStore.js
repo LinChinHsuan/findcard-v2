@@ -23,6 +23,6 @@ export default defineStore('messageStore', () => {
 
   return {
     messages,
-    pushMessage
+    pushMessage,
   }
 })

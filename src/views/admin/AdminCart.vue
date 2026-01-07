@@ -314,8 +314,8 @@ const products = ref([])
 const coupon = ref('')
 const step = ref(1)
 const orderId = ref('')
-const order = ref({ 
-  user: {}
+const order = ref({
+  user: {},
 })
 const form = ref({
   user: {
@@ -345,7 +345,7 @@ function delAllCartProducts() {
 }
 function updateCartProduct(item) {
   isLoading.value = true
-  loadingItem.value  = item.id
+  loadingItem.value = item.id
   const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/cart/${item.id}`
   axios.put(api, { data: { product_id: item.id, qty: item.qty } }).then((res) => {
     getCart()

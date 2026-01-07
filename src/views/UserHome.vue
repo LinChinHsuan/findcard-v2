@@ -536,16 +536,19 @@ onMounted(() => {
 
   scroll()
   window.addEventListener('scroll', scroll)
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('animation')
-        observer.unobserve(entry.target)
-      }
-    })
-  }, {
-    threshold: 0.15
-  })
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animation')
+          observer.unobserve(entry.target)
+        }
+      })
+    },
+    {
+      threshold: 0.15,
+    },
+  )
   if (about.value) observer.observe(about.value)
   if (news.value) observer.observe(news.value)
   if (feedback.value) observer.observe(feedback.value)

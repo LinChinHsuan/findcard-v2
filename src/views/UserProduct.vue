@@ -183,10 +183,13 @@ const SectionCouponBanner = ref({
   btnPath: '/coupon',
 })
 
-watch(() => route.params.id, () => {
-  qty.value = 1 // 重置數量
-  getProduct()
-})
+watch(
+  () => route.params.id,
+  () => {
+    qty.value = 1 // 重置數量
+    getProduct()
+  },
+)
 function getProduct() {
   isLoading.value = true
   const id = route.params.id

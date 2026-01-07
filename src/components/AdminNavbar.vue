@@ -82,14 +82,17 @@ let bsCollapse = null
 const isCollapse = ref(false)
 const status = ref('')
 
-watch(() => route.name, (newName) => {
-  if (document.body.offsetWidth < 992) {
-    if (isCollapse.value) {
-      bsCollapse.hide()
+watch(
+  () => route.name,
+  (newName) => {
+    if (document.body.offsetWidth < 992) {
+      if (isCollapse.value) {
+        bsCollapse.hide()
+      }
     }
-  }
-  status.value = newName
-})
+    status.value = newName
+  },
+)
 
 function logout() {
   const api = `${import.meta.env.VITE_APP_API}/logout`
@@ -104,7 +107,7 @@ onMounted(() => {
   status.value = route.name
 
   bsCollapse = new Collapse(navbarCollapse.value, {
-    toggle: false // 初始化時不要切換選單開關
+    toggle: false, // 初始化時不要切換選單開關
   })
 })
 </script>

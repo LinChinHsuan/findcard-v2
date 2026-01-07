@@ -258,7 +258,8 @@ const radioQuestion = ref(null)
 
 const tempTrivia = ref({})
 const isLoading = ref(false)
-watch(() => props.trivia,
+watch(
+  () => props.trivia,
   (newVal) => {
     tempTrivia.value = JSON.parse(JSON.stringify(newVal))
     if (!tempTrivia.value.id) {
@@ -277,7 +278,7 @@ watch(() => props.trivia,
         radioTrivia.value.disabled = true
       }
     }
-  }
+  },
 )
 
 const fileInput = ref(null)

@@ -1,12 +1,23 @@
 <template>
-  <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" ref="modal">
+  <div
+    class="modal fade"
+    id="productModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+    ref="modal"
+  >
     <div class="modal-dialog modal-xl" role="document">
       <div class="modal-content border-0">
         <div class="modal-header bg-primary text-white">
-          <h5 class="modal-title fw-bold" id="exampleModalLabel">
-            訂單細節
-          </h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h5 class="modal-title fw-bold" id="exampleModalLabel">訂單細節</h5>
+          <button
+            type="button"
+            class="btn-close btn-close-white"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
         </div>
         <div class="modal-body">
           <div class="row">
@@ -15,7 +26,7 @@
               <table class="table">
                 <tbody v-if="tempOrder.user">
                   <tr>
-                    <th style="width: 100px;">姓名</th>
+                    <th style="width: 100px">姓名</th>
                     <td>{{ tempOrder.user.name }}</td>
                   </tr>
                   <tr>
@@ -43,7 +54,7 @@
                   </tr>
                   <tr>
                     <th>下單時間</th>
-                    <td>{{ $filters.date(tempOrder.create_at)}}</td>
+                    <td>{{ $filters.date(tempOrder.create_at) }}</td>
                   </tr>
                   <tr>
                     <th>付款時間</th>
@@ -58,7 +69,14 @@
                     <th>付款狀態</th>
                     <td class="d-flex">
                       <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="SwitchCheck" :checked="tempOrder.is_paid" v-model="tempOrder.is_paid">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          role="switch"
+                          id="SwitchCheck"
+                          :checked="tempOrder.is_paid"
+                          v-model="tempOrder.is_paid"
+                        />
                       </div>
                       <span v-if="tempOrder.is_paid" class="text-success fw-bold">已付款</span>
                       <span v-else class="text-muted">未付款</span>
@@ -82,9 +100,7 @@
                     <th>
                       {{ item.product.title }}
                     </th>
-                    <td>
-                      {{ item.qty }} / {{ item.product.unit }}
-                    </td>
+                    <td>{{ item.qty }} / {{ item.product.unit }}</td>
                     <td class="text-end">
                       {{ $filters.currency(item.final_total) }}
                     </td>
@@ -95,8 +111,16 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">取消</button>
-          <button type="button" class="btn btn-primary text-white" @click="$emit('update-order', tempOrder)">確認</button>
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+            取消
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary text-white"
+            @click="$emit('update-order', tempOrder)"
+          >
+            確認
+          </button>
         </div>
       </div>
     </div>
@@ -110,15 +134,19 @@ import Modal from 'bootstrap/js/dist/modal'
 const props = defineProps({
   order: {
     type: Object,
-    default: () => ({})
-  }
+    default: () => ({}),
+  },
 })
 const tempOrder = ref({})
-watch(() => props.order, (newVal) => {
-  if (newVal) {
-    tempOrder.value = { ...newVal }
-  }
-}, { deep: true })
+watch(
+  () => props.order,
+  (newVal) => {
+    if (newVal) {
+      tempOrder.value = { ...newVal }
+    }
+  },
+  { deep: true },
+)
 
 const modal = ref(null)
 let bsModal = null
@@ -131,7 +159,7 @@ function hideModal() {
 }
 defineExpose({
   showModal,
-  hideModal
+  hideModal,
 })
 
 onMounted(() => {

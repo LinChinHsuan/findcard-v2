@@ -112,9 +112,7 @@
             <div class="h-100 p-5 bg-white text-center">
               <span class="material-icons checkCircle text-primary mb-3">check_circle</span>
               <p class="fs-5 mb-5">
-                你的分數 {{ score }} / {{ answers.length }} ({{
-                  (score / answers.length) * 100
-                }}%)
+                你的分數 {{ score }} / {{ answers.length }} ({{ (score / answers.length) * 100 }}%)
               </p>
               <p class="mb-0">恭喜獲得冷知識大考驗{{ coupon.percent }}優惠券</p>
               <p class="mb-0">

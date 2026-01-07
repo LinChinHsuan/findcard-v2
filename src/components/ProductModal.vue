@@ -222,9 +222,12 @@ const props = defineProps({
 
 const tempProduct = ref({})
 const isLoading = ref(false)
-watch(() => props.product, () => {
-  tempProduct.value = JSON.parse(JSON.stringify(props.product))
-})
+watch(
+  () => props.product,
+  () => {
+    tempProduct.value = JSON.parse(JSON.stringify(props.product))
+  },
+)
 
 const fileInput = ref(null)
 function uploadFile() {

@@ -23,7 +23,7 @@ defineRule('min', min)
 // 設定 vee-validate 全域規則
 configure({
   generateMessage: localize({ zh_TW: zhTW }), // 載入繁體中文語系
-  validateOnInput: true // 當輸入任何內容直接進行驗證
+  validateOnInput: true, // 當輸入任何內容直接進行驗證
 })
 // 設定預設語系
 setLocale('zh_TW')
@@ -44,7 +44,7 @@ const options = {
   timer: 2500,
   timerProgressBar: true,
   icon: 'success',
-  iconColor: '#587778'
+  iconColor: '#587778',
 }
 app.use(VueSweetalert2, options)
 
@@ -57,4 +57,3 @@ app.component('VField', Field)
 app.component('ErrorMessage', ErrorMessage)
 
 app.mount('#app')
-

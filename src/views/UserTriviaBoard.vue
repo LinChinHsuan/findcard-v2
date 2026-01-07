@@ -16,16 +16,16 @@ import Footer from '@/components/Footer.vue'
 </script>
 
 <style lang="scss" scoped>
-.banner{
+.banner {
   height: 300px;
-  background-image: url("https://storage.googleapis.com/vue-course-api.appspot.com/vuefindcard/1758699356415.jpg");
+  background-image: url('https://storage.googleapis.com/vue-course-api.appspot.com/vuefindcard/1758699356415.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  @media (max-width:768px) {
+  @media (max-width: 768px) {
     height: 250px;
   }
-  @media (max-width:576px) {
+  @media (max-width: 576px) {
     height: 200px;
   }
 }

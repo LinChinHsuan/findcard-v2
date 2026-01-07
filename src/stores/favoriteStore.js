@@ -66,6 +66,6 @@ export default defineStore('favoriteStore', () => {
     getFavorite,
     removeFavorite,
     toggleFavorite,
-    isFavorite
+    isFavorite,
   }
 })

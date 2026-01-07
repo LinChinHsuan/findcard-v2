@@ -56,7 +56,7 @@ function hideModal() {
 }
 defineExpose({
   showModal,
-  hideModal
+  hideModal,
 })
 
 onMounted(() => {

@@ -16,7 +16,7 @@ const { pushMessage } = mStore
 </script>
 
 <style lang="scss" scoped>
-.toast-container{
+.toast-container {
   z-index: 3;
   top: 10px;
   right: 10px;

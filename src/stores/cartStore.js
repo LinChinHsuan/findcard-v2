@@ -71,6 +71,6 @@ export default defineStore('cartStore', () => {
     getCart,
     addCart,
     delCartProduct,
-    delAllCartProducts
+    delAllCartProducts,
   }
 })

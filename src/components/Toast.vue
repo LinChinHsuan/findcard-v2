@@ -19,10 +19,10 @@ const props = defineProps(['msg'])
 
 const toast = ref(null)
 
-onMounted(()=>{
-    const bsToast = new Toast(toast.value, {
-      delay: 6500
-    })
-    bsToast.show()
+onMounted(() => {
+  const bsToast = new Toast(toast.value, {
+    delay: 6500,
+  })
+  bsToast.show()
 })
 </script>

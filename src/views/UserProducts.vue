@@ -177,7 +177,7 @@ const categoryCounts = computed(() => {
     onSale: all.filter((i) => i.price !== i.origin_price).length,
     memorial: all.filter((i) => i.category === '紀念牌').length,
     bicycle: all.filter((i) => i.category === '經典單車牌').length,
-    other: all.filter((i) => i.category === '其他').length
+    other: all.filter((i) => i.category === '其他').length,
   }
 })
 
