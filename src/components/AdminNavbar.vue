@@ -96,11 +96,20 @@ watch(
 
 function logout() {
   const api = `${import.meta.env.VITE_APP_API}/logout`
-  axios.post(api).then((res) => {
-    if (res.data.success) {
+  axios
+    .post(api)
+    .then((res) => {
+      if (res.data.success) {
+        document.cookie = 'findcardCookie=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
+        router.push('/login')
+      }
+    })
+    .catch((err) => {
+      console.error('登出失敗：', err)
+      // 即便 API 失敗（例如網路問題），前端也強制清除 Cookie 並踢回登入頁，以保安全
+      document.cookie = 'findcardCookie=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
       router.push('/login')
-    }
-  })
+    })
 }
 
 onMounted(() => {

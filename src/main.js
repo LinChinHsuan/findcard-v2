@@ -3,6 +3,7 @@ import Loading from 'vue3-loading-overlay'
 import 'vue3-loading-overlay/dist/vue3-loading-overlay.css'
 import VueSweetalert2 from 'vue-sweetalert2'
 import 'sweetalert2/dist/sweetalert2.min.css'
+import axios from 'axios'
 
 // Vee-validate
 import { Field, Form, ErrorMessage, defineRule, configure } from 'vee-validate'
@@ -49,6 +50,17 @@ const options = {
 app.use(VueSweetalert2, options)
 
 app.use(router)
+
+axios.interceptors.request.use((config) => {
+  const token = document.cookie.replace(
+    /(?:(?:^|.*;\s*)findcardCookie\s*=\s*([^;]*).*$)|^.*$/,
+    '$1',
+  )
+  if (token) {
+    config.headers.Authorization = token
+  }
+  return config
+})
 
 // 註冊元件
 app.component('Loading', Loading)

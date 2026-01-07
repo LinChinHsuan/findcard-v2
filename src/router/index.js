@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+import Swal from 'sweetalert2'
 
 const routes = [
   {
@@ -64,6 +65,29 @@ const routes = [
     path: '/admin',
     name: 'admin',
     component: () => import('../views/admin/AdminDashboard.vue'),
+    beforeEnter: (to, from, next) => {
+      const token = document.cookie.replace(
+        /(?:(?:^|.*;\s*)findcardCookie\s*=\s*([^;]*).*$)|^.*$/,
+        '$1',
+      )
+
+      if (token) {
+        next()
+      } else {
+        Swal.fire({
+          title: '請先登入管理員帳號',
+          width: '24rem',
+          toast: true,
+          position: 'top',
+          showConfirmButton: false,
+          timer: 2500,
+          timerProgressBar: true,
+          icon: 'error',
+          iconColor: '#FF5959',
+        })
+        next('/login')
+      }
+    },
     children: [
       {
         path: 'products',

@@ -46,11 +46,13 @@
 
 <script setup>
 import Footer from '@/components/Footer.vue'
-import { ref } from 'vue'
+import { ref, inject } from 'vue'
 import { useRouter } from 'vue-router'
 import axios from 'axios'
 
 const router = useRouter()
+
+const swal = inject('$swal')
 
 const user = ref({
   username: '',
@@ -63,6 +65,13 @@ function signin() {
       const { token, expired } = res.data
       document.cookie = `findcardCookie=${token}; expires=${new Date(expired)};`
       router.push('/admin/products')
+    } else {
+      swal({
+        icon: 'error',
+        iconColor: '#FF5959',
+        title: res.data.message || '登入失敗',
+        width: '16rem',
+      })
     }
   })
 }
